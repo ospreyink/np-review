@@ -1,0 +1,8 @@
+.navbar-brand span {
+  margin-right: 10px;
+}
+
+.hero {
+  background: url("https://pixabay.com/get/ec33b80d2ff11c22d2524518b7444795ea76e5d004b0144291f6c07ea2efb5_340.jpg") no-repeat;
+  background-size: cover;
+}

@@ -4,10 +4,11 @@ var express = require('express'),
     
     app = express();
 
-//.set("view engine", "ejs");
+app.set("view engine", "ejs");
+app.use(express.static('public'));
 
 app.get('/', function(req, res){
-    res.send("Home page");
+    res.render('index');
 });
 
 app.listen(process.env.PORT, process.env.IP, function(){ 
