@@ -6,18 +6,37 @@
     </div>
   </div>
   
+  <h1 class="title is-1 has-text-centered">Browsing Parks</h1>
   <div class="section">
-    <h1 class="title is-1 has-text-centered">Browsing Parks</h1>
-    
-    <% parks.forEach(function(park){ %>
-      <div class="container">
-        <h2 class="title is-2"><%= park.name %></h1>
-        <p><%= park.description %></p>
-        <p><a href="/parks/<%= park._id %>">Read More</a></p>
-      </div>
-    <% }); %>
+    <div class="columns is-multiline">
+      <% parks.forEach(function(park){ %>
+        <div class="column is-one-quarter">
+          
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <a href="/parks/<%= park._id %>"><img src="<%= park.image %>" alt="image of <%= park.name %>"></a>
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-2"><%= park.name %></p>
+                  </div>
+                </div>
+                <div class="content">
+                  <%= park.description %>
+                </div>
+                <div class="content">
+                  <a href="/parks/<%= park._id %>" class="button">Read More</a>
+                </div>
+              </div>
+          </div>
+          
+        </div>
+      <% }); %>
+    </div>
     
   </div>
-  
 
 <% include partials/footer %>
