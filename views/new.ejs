@@ -1,0 +1,48 @@
+<% include partials/header %>
+
+  <div class="section">
+    <div class="container">
+
+      <form action="/parks" method="POST">
+        
+        <div class="field">
+          <label class="label">Park Name</label>
+          <div class="control">
+            <input class="input" type="text" name="park[name]">
+          </div>
+        </div>
+      
+        <div class="field">
+          <label class="label">Main image</label>
+          <div class="control">
+            <input class="input" type="text" name="park[image]" placeholder="url">
+          </div>
+        </div>
+        
+        <div class="field">
+          <label class="label">Summary</label>
+          <div class="control">
+            <input class="input" type="text" name="park[description]" placeholder="140 characters or less">
+          </div>
+        </div>
+
+        <div class="level">
+          <div class="level-item">
+            <div class="field is-grouped">
+             <div class="control">
+               <input class="button is-link" type="submit">
+              </div>
+              <div class="control">
+                <a href="parks"><button class="button is-text">Cancel</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </form>
+      
+      
+    </div>
+  </div>
+
+<% include partials/footer %>

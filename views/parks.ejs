@@ -1,0 +1,22 @@
+<% include partials/header %>
+
+  <div class="section">
+    <div class="container has-text-centered	">
+      <a class="button is-link is-medium is-outlined" href="parks/new">Create New Park</a>
+    </div>
+  </div>
+  
+  <div class="section">
+    
+      <% parks.forEach(function(park){ %>
+        <div class="container">
+          <h1><%= park.name %></h1>
+          <p><%= park.description %></p>
+          <p><a href="/parks/<%= park._id %>">Read More</a></p>
+        </div>
+      <% }); %>
+    
+  </div>
+  
+
+<% include partials/footer %>
