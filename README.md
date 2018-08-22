@@ -1,2 +1,2 @@
 # np-review
-Site where users rate &amp; review National Parks
+Curated reviews of National Parks. Registered users can comment.
