@@ -1,80 +1,56 @@
-var mongoose = require('mongoose'),
-    Park = require('park.js');
-    
+var mongoose = require("mongoose"),
+    Park = require("./models/park");
+    // Comment = require("./models/comment");
+ 
 var data = [
-    {
-      name: "Golden Spike",
-      description: "Golden Spike National Historic Site shares the stories of the people and settings that define the completion of the first Transcontinental Railroad.",
-      image: "https://www.nps.gov/common/uploads/grid_builder/imr/crop16_9/8170DF2B-1DD8-B71B-0BAE531B96261C09.jpg?width=307&quality=90&mode=crop"
-    },
-    {
-      name: "Zion National Park",
-      description: "Home to Zion Canyon, this vast national park offers trails, climbing, camping & more.",
-      image: "https://lh3.googleusercontent.com/proxy/KnVof8mcnCn344CE9MStJ-5bXmO20N1iYzggI30lbmBa_aX4xQhmDvC4m60Ik_SS0zP_OB5OZ7-mZzy93XKW6E8SGR8F0Jy2W-c3zMlQTY-1q1DiJm1aAbPolN7aAUJ8v9D2n_LlOykQeQzblI6cZ3nCm0g=w719-h360-k-no"
-    },
-    {
-      name:  "Fort Vancouver",
-      description: "Located on the north bank of the Columbia River, in sight of snowy mountain peaks and a vibrant urban landscape, this park has a rich cultural past. From a frontier fur trading post, to a powerful military legacy, the magic of flight, and the origin of the American Pacific Northwest, history is shared at four unique sites. Discover stories of transition, settlement, conflict, and community.",
-      image: "https://pixabay.com/get/eb34b70c2ff61c22d2524518b7444795ea76e5d004b0144291f8c97ba0e4b7_340.jpg"
-    },
-    {
-      name:  "African Burial Ground",
-      description: "Lorem ipsum dolor sit amet, nunc faucibus eget fringilla wisi etiam rutrum, nec donec venenatis eleifend nam ac, urna mauris in vitae, curabitur convallis sit suscipit lorem velit ultricies, curabitur id.",
-      image: "https://pixabay.com/get/e835b60d20f6093ed1584d05fb1d4e97e07ee3d21cac104496f4c971a7e4b1bd_340.jpg"
-    },
-    {
-      name:  "Appalachian",
-      description: "A conubia euismod tristique natoque pede. Leo sollicitudin vel, quis ante eu at vitae sed quisque, vel aliquet amet sociis facilisi, interdum tortor etiam sed eget amet gravida. ",
-      image: "https://pixabay.com/get/ec30b1092fe90021d85a5854ee4d459fe270e7c818b412459df7c77aafee_340.png"
-    }
+  {
+    name: "Golden Spike", 
+    image: "/imgs/spike.png",
+    description: "Golden Spike National Historic Site shares the stories of the people and settings that define the completion of the first Transcontinental Railroad."
+  },
+  {
+    name: "Zion National Park", 
+    image: "/imgs/zion.png",
+    description: "Home to Zion Canyon, this vast national park offers trails, climbing, camping and more."
+  },
+  {
+    name: "Alibates Flint Quarries", 
+    image: "/imgs/quarry.png",
+    description: "13,000 years ago this site was already well-known by mammoth hunters as a place to get the best stone for their tools."
+  },
+  {
+    name: "Lewis & Clark", 
+    image: "/imgs/lewisclark.png",
+    description: "Between May 1804 and September 1806, 31 men, one woman, and a baby traveled from the plains of the Midwest to the shores of the Pacific Ocean. They called themselves the Corps of Discovery. In their search for a water route to the Pacific Ocean, they opened a window into the west for the young United States."
+  },
+  {
+    name: "Lincoln Home", 
+    image: "/imgs/lincoln.png",
+    description: "Abraham Lincoln believed in the ideal that everyone in America should have the opportunity to improve his/her economic and social condition. Lincoln’s life was the embodiment of that idea."
+  }
 ];
 
 function seedDB(){
-  // Remove all entries
-  Park.remove({}, function(err){
+  // Delete parks
+  Park.deleteMany({},function(err){
     if(err){
-      console.log("Error removing parks.");
-      console.log(err);
+      console.log("Error: " + err);
     } else {
-      console.log("Success! Parks deleted.");
+      console.log("Parks cleared from db.");
     }
-  });
+    });
   
-  // Generate data
-  Park.create(
-      {
-      name: "Golden Spike",
-      description: "Golden Spike National Historic Site shares the stories of the people and settings that define the completion of the first Transcontinental Railroad.",
-      image: "https://www.nps.gov/common/uploads/grid_builder/imr/crop16_9/8170DF2B-1DD8-B71B-0BAE531B96261C09.jpg?width=307&quality=90&mode=crop"
-    },
-    {
-      name: "Zion National Park",
-      description: "Home to Zion Canyon, this vast national park offers trails, climbing, camping & more.",
-      image: "https://lh3.googleusercontent.com/proxy/KnVof8mcnCn344CE9MStJ-5bXmO20N1iYzggI30lbmBa_aX4xQhmDvC4m60Ik_SS0zP_OB5OZ7-mZzy93XKW6E8SGR8F0Jy2W-c3zMlQTY-1q1DiJm1aAbPolN7aAUJ8v9D2n_LlOykQeQzblI6cZ3nCm0g=w719-h360-k-no"
-    },
-    {
-      name:  "Fort Vancouver",
-      description: "Located on the north bank of the Columbia River, in sight of snowy mountain peaks and a vibrant urban landscape, this park has a rich cultural past. From a frontier fur trading post, to a powerful military legacy, the magic of flight, and the origin of the American Pacific Northwest, history is shared at four unique sites. Discover stories of transition, settlement, conflict, and community.",
-      image: "https://pixabay.com/get/eb34b70c2ff61c22d2524518b7444795ea76e5d004b0144291f8c97ba0e4b7_340.jpg"
-    },
-    {
-      name:  "African Burial Ground",
-      description: "Lorem ipsum dolor sit amet, nunc faucibus eget fringilla wisi etiam rutrum, nec donec venenatis eleifend nam ac, urna mauris in vitae, curabitur convallis sit suscipit lorem velit ultricies, curabitur id.",
-      image: "https://pixabay.com/get/e835b60d20f6093ed1584d05fb1d4e97e07ee3d21cac104496f4c971a7e4b1bd_340.jpg"
-    },
-    {
-      name:  "Appalachian",
-      description: "A conubia euismod tristique natoque pede. Leo sollicitudin vel, quis ante eu at vitae sed quisque, vel aliquet amet sociis facilisi, interdum tortor etiam sed eget amet gravida. ",
-      image: "https://pixabay.com/get/ec30b1092fe90021d85a5854ee4d459fe270e7c818b412459df7c77aafee_340.png"
-    }, function(err, park){
-      if(err){
-        console.log(err);
-      } else {
-        console.log("Park generated.");
-      }
-    }
-  );
-  
+  // Create parks
+  data.forEach(function(seed){
+      Park.create(seed, function(err, park){
+        if(err){
+          console.log("Error: " + err);
+        } else {
+          console.log("Park added to db.");
+        }
+      });
+    });
+    
   }
-
+ 
 module.exports = seedDB;

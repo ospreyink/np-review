@@ -1,16 +1,33 @@
 <% include partials/header %>
+  <div class="section">
+    <div class="container has-text-centered">
+      <a href="parks" class="button is-link">Go back</a>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="container">
+      <h1 class="title is-1"><%= park.name %></h1>
+      
+      <p><%= park.description %></p>
+      <p><img src="<%= park.image %>"></p>
+      
+      <div class="level">
+        <p class="level-left">
+          <a class="button is-outlined" href="<%= park._id%>/edit">
+            Edit
+          </a>
+        </p>
+        <p class="level-right">
+          <form id="delete" action="/parks/<%= park._id %>?_method=DELETE" method="POST">
+          	<button class="button is-danger">Delete</button>
+          </form>
+        </p>
+      </div>
+      
+    </div>
+  </div>
 
-<a href="parks">Go back</a>
-
-  <h1><%= park.name %> Profile</h1>
-  <p><a class="button is-light" href="<%= park._id%>/edit">Edit</a>  </p>
-  <p><%= park.description %></p>
-  <p><img src="<%= park.image %>"></p>
-  <p>
-    <form id="delete" action="/parks/<%= park._id %>?_method=DELETE" method="POST">
-    	<button class="button is-danger">Delete</button>
-    </form>
-
-  </p>
+  
 
 <% include partials/footer %>

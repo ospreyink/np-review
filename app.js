@@ -3,9 +3,15 @@ var bodyParser        = require('body-parser'),
     expressSanitizer  = require('express-sanitizer'),
     methodOverride    = require('method-override'),
     mongoose          = require('mongoose'),
+    Park              = require("./models/park"),
+    // Comment           = require("./models/comment"),
+    // User              = require("./models/user"),
+    seedDB            = require('./seeds'),
     
     app = express();
 
+
+seedDB();
 app.set("view engine", "ejs");
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -13,8 +19,6 @@ app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 
 mongoose.connect("mongodb://localhost/national_parks", { useNewUrlParser: true });
-
-var Park = require("./models/park");
 
 app.get('/', function(req, res){
   res.render('index');
